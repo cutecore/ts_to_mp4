@@ -21,16 +21,16 @@ if not os.path.exists(ts_decrypt_dir):
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
 
-#读取key
+
 with open(drm_key_file, "br") as f:
     drm_key = f.readline().hex().upper()
     print(drm_key)
 
-#读取总片段数目
+
 with open(m3u8_file, "r") as f:
     count_line = f.readlines()
     count_line = count_line[-2]
-    count = 20
+    count = int(count_line.split("_")[2].split(".")[0]) + 1
 
 
 for i in range(0, count):
